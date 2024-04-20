@@ -61,4 +61,4 @@ Also you can create, copy, move, rename and remove any files.
 > `move` - move file to another directory, where `dst` - new directory and/or new file name \
 > `delete` - remove file
 
-## That's all. Stay tuned! 
+## That's all. Stay tuned!
