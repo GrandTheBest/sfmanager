@@ -1,6 +1,6 @@
 # SFManager 
 
-[![PyPI version](https://img.shields.io/pypi/v/sfmanager)](https://pypi.org/project/openai/)
+[![PyPI version](https://img.shields.io/pypi/v/sfmanager)](https://pypi.org/project/sfmanager/)
 
 ## This library is not that useful. Perhaps someday it will become great.
 
