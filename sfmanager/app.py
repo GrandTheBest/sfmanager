@@ -133,6 +133,7 @@ class FileManager:
 
 class FilesManager:
 	level = None
+	_dir = None
 
 	# Initalization func
 
@@ -146,11 +147,15 @@ class FilesManager:
 
 	# Read line in text file
 
-	def readline(self, dst):
+	def readline(self, dst, use_wd=True):
 		if self.level >= 1:
 			try:
-				with open(f"{dst}", "r") as f:
-					raw = f.readline()
+				if use_wd == True:
+					with open(f"{self._dir}{dst}", "r") as f:
+						raw = f.readline()
+				else:
+					with open(f"{dst}", "r") as f:
+						raw = f.readline()
 				return raw
 			except FileNotFoundError:
 				print("Something went wrong...")
@@ -159,11 +164,15 @@ class FilesManager:
 
 	# Read lines in text file (as array)
 
-	def readlines(self, dst):
+	def readlines(self, dst, use_wd=True):
 		if self.level >= 1:
 			try:
-				with open(f"{dst}", "r") as f:
-					raw = f.readlines()
+				if use_wd == True:
+					with open(f"{self._dir}{dst}", "r") as f:
+						raw = f.readlines()
+				else:
+					with open(f"{dst}", "r") as f:
+						raw = f.readlines()
 				return raw
 			except FileNotFoundError:
 				print("Something went wrong...")
@@ -172,12 +181,17 @@ class FilesManager:
 
 	# Set content in text file
 
-	def set(self, dst, text):
+	def set(self, dst, text, use_wd=True):
 		if self.level >= 3:
 			try:
-				with open(f"{dst}", "w") as f:
-					f.write(text)
-					return 1
+				if use_wd == True:
+					with open(f"{self._dir}{dst}", "w") as f:
+						f.write(text)
+						return 1
+				else:
+					with open(f"{dst}", "w") as f:
+						f.write(text)
+						return 1
 			except FileNotFoundError:
 				print("Something went wrong...")
 		else:
@@ -185,14 +199,21 @@ class FilesManager:
 
 	# Add content in text file with separator(default separator is empty)
 
-	def add(self, dst, text, sep=""):
+	def add(self, dst, text, sep="", use_wd=True):
 		if self.level >= 2:
 			try:
-				with open(f"{dst}", "r") as f:
-					old = f.read()
-				with open(f"{dst}", "w") as f:
-					f.write(old + sep + text)
-					return 1
+				if use_wd == True:
+					with open(f"{self._dir}{dst}", "r") as f:
+						old = f.read()
+					with open(f"{self._dir}{dst}", "w") as f:
+						f.write(old + sep + text)
+						return 1
+				else:
+					with open(f"{dst}", "r") as f:
+						old = f.read()
+					with open(f"{dst}", "w") as f:
+						f.write(old + sep + text)
+						return 1
 			except FileNotFoundError:
 				print("Something went wrong...")
 		else:
@@ -200,13 +221,19 @@ class FilesManager:
 
 	# Replace certain content in text file
 
-	def replace(self, dst, _from, _to):
+	def replace(self, dst, _from, _to, use_wd=True):
 		if self.level >= 3:
 			try:
-				with open(f"{dst}", "r") as f:
-					data = f.read().replace(_from, _to)
-				with open(f"{dst}", "w") as f:
-					f.write(data)
+				if use_wd == True:
+					with open(f"{dst}", "r") as f:
+						data = f.read().replace(_from, _to)
+					with open(f"{dst}", "w") as f:
+						f.write(data)
+				else:
+					with open(f"{dst}", "r") as f:
+						data = f.read().replace(_from, _to)
+					with open(f"{dst}", "w") as f:
+						f.write(data)
 			except FileNotFoundError:
 				print("Something went wrong...")
 		else:
@@ -216,19 +243,25 @@ class FilesManager:
 
 	# Create line
 
-	def create(self, dst):
+	def create(self, dst, use_wd=True):
 		if self.level >= 2:
-			f = open(f"{dst}", "a")
+			if use_wd == True:
+				f = open(f"{self._dir}{dst}")
+			else:
+				f = open(f"{dst}", "a")
 			f.close()
 		else:
 			print(f"Low access level! {self.level}, but need 2")
 
 	# Rename file(from self.filename to name)
 
-	def rename(self, dst, name):
+	def rename(self, dst, name, use_wd=True):
 		if self.level >= 4:
 			try:
-				os.rename(f"{dst}", name)
+				if use_wd == True:
+					os.rename(f"{self._dir}{dst}")
+				else:
+					os.rename(f"{dst}", name)
 			except FileNotFoundError:
 				print("Something went wrong...")
 		else:
@@ -236,10 +269,13 @@ class FilesManager:
 
 	# Delete file
 
-	def delete(self, dst):
+	def delete(self, dst, use_wd=True):
 		if self.level == 5:
 			try:
-				os.remove(f"{dst}")
+				if use_wd == True:
+					os.remove(f"{self._dir}{dst}")
+				else:
+					os.remove(f"{dst}")
 			except FileNotFoundError:
 				print("Something went wrong...")
 		else:
@@ -247,10 +283,13 @@ class FilesManager:
 
 	# Copy file
 
-	def copy(self, dst, new_dst):
+	def copy(self, dst, new_dst, use_wd=True):
 		if self.level >= 4:
 			try:
-				shutil.copy2(f"{dst}", f"{new_dst}")
+				if use_wd == True:
+					shutil.copy2(f"{self._dir}{dst}", f"{new_dst}")
+				else:
+					shutil.copy2(f"{dst}", f"{new_dst}")
 			except FileNotFoundError:
 				print("Something went wrong...")
 		else:
@@ -258,11 +297,22 @@ class FilesManager:
 
 	# Move file
 
-	def move(self, dst, new_dst):
+	def move(self, dst, new_dst, use_wd=True):
 		if self.level >= 4:
 			try:
-				shutil.move(f"{dst}", f"{new_dst}")
+				if use_wd == True:
+					shutil.move(f"{self._dir}{dst}")
+				else:
+					shutil.move(f"{dst}", f"{new_dst}")
 			except FileNotFoundError:
 				print("Something went wrong...")
 		else:
 			print(f"Low access level! {self.level}, but need 4")
+
+	# Set work directory (cd)
+
+	def cd(self, _dir):
+		if "/" in _dir:
+			self._dir = _dir
+		else:
+			print("Error! It's not directory!")

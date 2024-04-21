@@ -34,20 +34,25 @@ def whatIsIt():
 def checkUpdates():
 	logger.info("Checking for updates")
 
-	version = pkg_resources.get_distribution("sfmanager").version
-	updates = httpx.get("https://raw.githubusercontent.com/GrandTheBest/sfmanager/main/version")
+	installed_v = pkg_resources.get_distribution("sfmanager").version
+	v = httpx.get("https://raw.githubusercontent.com/GrandTheBest/sfmanager/main/version")
+	updates = httpx.get("https://raw.githubusercontent.com/GrandTheBest/sfmanager/main/update")
 
-	if updates.status_code == 200:
-		values = updates.text[0:5]
+	if installed_v.status_code == 200:
+		value_v = installed_v.text[0:5]
 
-		if str(version) == str(values):
+		if str(installed_v) == str(value_v):
 			logger.success("No update required")
 			whatIsIt()
 		else:
 			logger.info("Downloading an update using pip")
 
-			subprocess.check_call([sys.executable, "-m", "pip", "install", "sfmanager==" + values])
+			subprocess.check_call([sys.executable, "-m", "pip", "install", "sfmanager==" + value_v])
 			logger.success("sfmanager updated, changes will take effect after restart")
+			
+			if updates.status_code == 200:
+				value_u = updates.text[0:]
+				print(f"{value_v}")
 
 			os.chdir(os.path.join(pkg_resources.get_distribution("sfmanager").location, "sfmanager"))
 checkUpdates()

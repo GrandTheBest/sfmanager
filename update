@@ -1,0 +1,5 @@
+- Added the abillity to work with any files independently of each other
+- Added check updates on command sfmanager
+- Added method cd for set work directory
+- Added method create - for create files
+- Added print "What new in v...?" in command sfmanager after update sfmanager
