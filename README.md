@@ -2,7 +2,7 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/sfmanager)](https://pypi.org/project/sfmanager/)
 
-## What new in 0.1.4?
+## What new in 0.1.5?
 > - Added the abillity to work with any files independently of each other
 > - Added check updates on command `sfmanager`
 > - Added method `cd` for set work directory
