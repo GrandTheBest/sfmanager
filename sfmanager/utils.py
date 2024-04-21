@@ -38,8 +38,8 @@ def checkUpdates():
 	v = httpx.get("https://raw.githubusercontent.com/GrandTheBest/sfmanager/main/version")
 	updates = httpx.get("https://raw.githubusercontent.com/GrandTheBest/sfmanager/main/update")
 
-	if installed_v.status_code == 200:
-		value_v = installed_v.text[0:5]
+	if v.status_code == 200:
+		value_v = v.text[0:5]
 
 		if str(installed_v) == str(value_v):
 			logger.success("No update required")
@@ -49,7 +49,7 @@ def checkUpdates():
 
 			subprocess.check_call([sys.executable, "-m", "pip", "install", "sfmanager==" + value_v])
 			logger.success("sfmanager updated, changes will take effect after restart")
-			
+
 			if updates.status_code == 200:
 				value_u = updates.text[0:]
 				print(f"{value_v}")
