@@ -7,4 +7,4 @@ By GrandTheBest
 """
 
 from .app import *
-from .about import *
+from .utils import *

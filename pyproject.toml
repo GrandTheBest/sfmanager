@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 [project]
 name = "sfmanager"
-version = "0.1.2"
+version = "0.1.4"
 authors = [
 	{name="GrandTheBest", email="grandinfo-cm@gmail.com"},
 ]
@@ -11,7 +11,8 @@ description = "This library is not that useful. Perhaps someday it will become g
 readme = "README.md"
 requires-python = ">=3.10.0"
 dependencies = [
-	"Pillow>=9.0.1"
+	"Pillow>=9.0.1",
+   "loguru>=0.7.2"
 ]
 classifiers = [
    "Programming Language :: Python :: 3",
@@ -19,7 +20,7 @@ classifiers = [
    "Operating System :: OS Independent",
 ]
 [project.scripts]
-sfmanager = "sfmanager:whatIsIt"
+sfmanager = "sfmanager:checkUpdates"
 [project.urls]
 Homepage = "https://github.com/GrandTheBest/sfmanager"
 Issues = "https://github.com/GrandTheBest/sfmanager/issues"
