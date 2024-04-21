@@ -55,4 +55,3 @@ def checkUpdates():
 				print(f"{value_v}")
 
 			os.chdir(os.path.join(pkg_resources.get_distribution("sfmanager").location, "sfmanager"))
-checkUpdates()
