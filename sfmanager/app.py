@@ -150,7 +150,7 @@ class FilesManager:
 	def readline(self, dst, use_wd=True):
 		if self.level >= 1:
 			try:
-				if use_wd == True:
+				if use_wd == True and "/" in self._dir:
 					with open(f"{self._dir}{dst}", "r") as f:
 						raw = f.readline()
 				else:
@@ -167,7 +167,7 @@ class FilesManager:
 	def readlines(self, dst, use_wd=True):
 		if self.level >= 1:
 			try:
-				if use_wd == True:
+				if use_wd == True and "/" in self._dir:
 					with open(f"{self._dir}{dst}", "r") as f:
 						raw = f.readlines()
 				else:
@@ -184,7 +184,7 @@ class FilesManager:
 	def set(self, dst, text, use_wd=True):
 		if self.level >= 3:
 			try:
-				if use_wd == True:
+				if use_wd == True and "/" in self._dir:
 					with open(f"{self._dir}{dst}", "w") as f:
 						f.write(text)
 						return 1
@@ -202,7 +202,7 @@ class FilesManager:
 	def add(self, dst, text, sep="", use_wd=True):
 		if self.level >= 2:
 			try:
-				if use_wd == True:
+				if use_wd == True and "/" in self._dir:
 					with open(f"{self._dir}{dst}", "r") as f:
 						old = f.read()
 					with open(f"{self._dir}{dst}", "w") as f:
@@ -224,7 +224,7 @@ class FilesManager:
 	def replace(self, dst, _from, _to, use_wd=True):
 		if self.level >= 3:
 			try:
-				if use_wd == True:
+				if use_wd == True and "/" in self._dir:
 					with open(f"{dst}", "r") as f:
 						data = f.read().replace(_from, _to)
 					with open(f"{dst}", "w") as f:
@@ -245,7 +245,7 @@ class FilesManager:
 
 	def create(self, dst, use_wd=True):
 		if self.level >= 2:
-			if use_wd == True:
+			if use_wd == True and "/" in self._dir:
 				f = open(f"{self._dir}{dst}")
 			else:
 				f = open(f"{dst}", "a")
@@ -258,7 +258,7 @@ class FilesManager:
 	def rename(self, dst, name, use_wd=True):
 		if self.level >= 4:
 			try:
-				if use_wd == True:
+				if use_wd == True and "/" in self._dir:
 					os.rename(f"{self._dir}{dst}")
 				else:
 					os.rename(f"{dst}", name)
@@ -272,7 +272,7 @@ class FilesManager:
 	def delete(self, dst, use_wd=True):
 		if self.level == 5:
 			try:
-				if use_wd == True:
+				if use_wd == True and "/" in self._dir:
 					os.remove(f"{self._dir}{dst}")
 				else:
 					os.remove(f"{dst}")
@@ -286,7 +286,7 @@ class FilesManager:
 	def copy(self, dst, new_dst, use_wd=True):
 		if self.level >= 4:
 			try:
-				if use_wd == True:
+				if use_wd == True and "/" in self._dir:
 					shutil.copy2(f"{self._dir}{dst}", f"{new_dst}")
 				else:
 					shutil.copy2(f"{dst}", f"{new_dst}")
@@ -300,7 +300,7 @@ class FilesManager:
 	def move(self, dst, new_dst, use_wd=True):
 		if self.level >= 4:
 			try:
-				if use_wd == True:
+				if use_wd == True and "/" in self._dir:
 					shutil.move(f"{self._dir}{dst}")
 				else:
 					shutil.move(f"{dst}", f"{new_dst}")

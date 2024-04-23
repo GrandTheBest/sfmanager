@@ -7,9 +7,8 @@ import subprocess
 import sys
 import os
 
-logger.add("logs.log", level="DEBUG")
-
 def whatIsIt():
+	updates = httpx.get("https://raw.githubusercontent.com/GrandTheBest/sfmanager/main/update")
 	print("")
 	print("Hello dear user!")
 	sleep(1)
@@ -29,6 +28,15 @@ def whatIsIt():
 	sleep(2)
 	print("Thanks for using! Good luck!")
 	sleep(1)
+
+	v = pkg_resources.get_distribution("sfmanager").version
+	print(f"\nv{v} stable-v1")
+	if updates.status_code == 200:
+		print(f"Whats new in v{v}?")
+		print(updates.text[0:])
+	print("Homepage on github: https://github.com/GrandTheBest/sfmanager")
+	print("Issues page on github: https://github.com/GrandTheBest/sfmanager/issues")
+	print("Documentation: https://github.com/GrandTheBest/sfmanager/blob/main/README.md")
 
 @logger.catch
 def checkUpdates():
@@ -51,7 +59,7 @@ def checkUpdates():
 			logger.success("sfmanager updated, changes will take effect after restart")
 
 			if updates.status_code == 200:
-				value_u = updates.text[0:]
-				print(f"{value_v}")
+				print(f"Whats new in v{value_v}?")
+				print(updates.text[0:])
 
 			os.chdir(os.path.join(pkg_resources.get_distribution("sfmanager").location, "sfmanager"))

@@ -1,13 +1,14 @@
 # SFManager 
 
 [![PyPI version](https://img.shields.io/pypi/v/sfmanager)](https://pypi.org/project/sfmanager/)
+[![Distribution](https://img.shields.io/badge/Distribution-Stable%20V1-green)](https://pypi.org/project/sfmanager/)
+[![Distribution](https://img.shields.io/badge/Release-v0.1.8%20stable-blue)](https://github.com/GrandTheBest/sfmanager/releases/tag/v0.1.8-stable)
+[![Distribution](https://img.shields.io/github/license/GrandTheBest/sfmanager.svg)](https://github.com/GrandTheBest/sfmanager?tab=GPL-3.0-1-ov-file)
 
-## What new in 0.1.6?
-> - Added the abillity to work with any files independently of each other
-> - Added check updates on command `sfmanager`
-> - Added method `cd` for set work directory
-> - Added method `create` - for create files
-> - Added print "What new in v...?" in command sfmanager after update sfmanager
+## What new in 0.1.8?
+> - Fixed bug with empty directory
+> - Removed log file and save logs in log file(temporarily)
+> - Modified `sfmanager` command
 
 ## This library is not that useful. Perhaps someday it will become great.
 
