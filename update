@@ -1,2 +1,1 @@
-- Removed log file and save logs in log file(temporarily)
-- Modified sfmanager command
+- Fixed create method

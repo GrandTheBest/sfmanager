@@ -246,9 +246,9 @@ class FilesManager:
 	def create(self, dst, use_wd=True):
 		if self.level >= 2:
 			if use_wd == True and "/" in self._dir:
-				f = open(f"{self._dir}{dst}")
+				f = open(f"{self._dir}{dst}", "w")
 			else:
-				f = open(f"{dst}", "a")
+				f = open(f"{dst}", "w")
 			f.close()
 		else:
 			print(f"Low access level! {self.level}, but need 2")
