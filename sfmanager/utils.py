@@ -50,7 +50,7 @@ def checkUpdates(no_updates="U"):
 		updates = httpx.get("https://raw.githubusercontent.com/GrandTheBest/sfmanager/main/update")
 
 		if v.status_code == 200:
-			value_v = v.text[0:5]
+			value_v = v.text.replace(' ', '')
 
 			if str(installed_v) == str(value_v):
 				logger.success("No update required")
