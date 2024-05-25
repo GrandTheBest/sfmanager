@@ -40,7 +40,7 @@ def whatIsIt():
 
 @logger.catch
 def checkUpdates(no_updates="U"):
-	if no_updates == "N"
+	if no_updates == "N":
 		whatIsIt()
 	else:
 		logger.info("Checking for updates")
