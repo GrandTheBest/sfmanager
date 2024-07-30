@@ -147,7 +147,7 @@ class FilesManager:
 
 	# Read line in text file
 
-	def readline(self, dst, use_wd=True):
+	def readline(self, dst, use_wd=False):
 		if self.level >= 1:
 			try:
 				if use_wd == True and "/" in self._dir:
@@ -164,7 +164,7 @@ class FilesManager:
 
 	# Read lines in text file (as array)
 
-	def readlines(self, dst, use_wd=True):
+	def readlines(self, dst, use_wd=False):
 		if self.level >= 1:
 			try:
 				if use_wd == True and "/" in self._dir:
@@ -181,7 +181,7 @@ class FilesManager:
 
 	# Set content in text file
 
-	def set(self, dst, text, use_wd=True):
+	def set(self, dst, text, use_wd=False):
 		if self.level >= 3:
 			try:
 				if use_wd == True and "/" in self._dir:
@@ -199,7 +199,7 @@ class FilesManager:
 
 	# Add content in text file with separator(default separator is empty)
 
-	def add(self, dst, text, sep="", use_wd=True):
+	def add(self, dst, text, sep="", use_wd=False):
 		if self.level >= 2:
 			try:
 				if use_wd == True and "/" in self._dir:
@@ -221,7 +221,7 @@ class FilesManager:
 
 	# Replace certain content in text file
 
-	def replace(self, dst, _from, _to, use_wd=True):
+	def replace(self, dst, _from, _to, use_wd=False):
 		if self.level >= 3:
 			try:
 				if use_wd == True and "/" in self._dir:
@@ -243,7 +243,7 @@ class FilesManager:
 
 	# Create line
 
-	def create(self, dst, use_wd=True):
+	def create(self, dst, use_wd=False):
 		if self.level >= 2:
 			if use_wd == True and "/" in self._dir:
 				f = open(f"{self._dir}{dst}", "w")
@@ -255,7 +255,7 @@ class FilesManager:
 
 	# Rename file(from self.filename to name)
 
-	def rename(self, dst, name, use_wd=True):
+	def rename(self, dst, name, use_wd=False):
 		if self.level >= 4:
 			try:
 				if use_wd == True and "/" in self._dir:
@@ -269,7 +269,7 @@ class FilesManager:
 
 	# Delete file
 
-	def delete(self, dst, use_wd=True):
+	def delete(self, dst, use_wd=False):
 		if self.level == 5:
 			try:
 				if use_wd == True and "/" in self._dir:
@@ -283,7 +283,7 @@ class FilesManager:
 
 	# Copy file
 
-	def copy(self, dst, new_dst, use_wd=True):
+	def copy(self, dst, new_dst, use_wd=False):
 		if self.level >= 4:
 			try:
 				if use_wd == True and "/" in self._dir:
@@ -297,7 +297,7 @@ class FilesManager:
 
 	# Move file
 
-	def move(self, dst, new_dst, use_wd=True):
+	def move(self, dst, new_dst, use_wd=False):
 		if self.level >= 4:
 			try:
 				if use_wd == True and "/" in self._dir:

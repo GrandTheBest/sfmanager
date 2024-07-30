@@ -3,9 +3,9 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 [project]
 name = "sfmanager"
-version = "0.1.10"
+version = "0.1.11"
 authors = [
-	{name="GrandTheBest", email="grandinfo-cm@gmail.com"},
+	{name="GrandTheBest", email="grandinfocm@gmail.com"},
 ]
 description = "This library is not that useful. Perhaps someday it will become great."
 readme = "README.md"
