@@ -5,13 +5,15 @@ import shutil
 class FileManager:
 	filename = None
 	level = None
+	encoding = None
 
 	# Initialization func
 
-	def __init__(self, filename, level):
-		if level > 0 and level < 6:
-			self.filename = str(filename)
-			self.level = int(level)
+	def __init__(self, filename: str, level: int, encoding: str = "UTF-8"):
+		if 0 < level < 6:
+			self.filename = filename
+			self.level = level
+			self.encoding = encoding
 		else:
 			print("Invalid access level! Allowed only 1-6 access levels")
 
@@ -22,7 +24,7 @@ class FileManager:
 	def readline(self):
 		if self.level >= 1:
 			try:
-				with open(f"{self.filename}", "r") as f:
+				with open(f"{self.filename}", "r", encoding=self.encoding) as f:
 					raw = f.readline()
 				return raw
 			except FileNotFoundError:
@@ -35,7 +37,7 @@ class FileManager:
 	def readlines(self):
 		if self.level >= 1:
 			try:
-				with open(f"{self.filename}", "r") as f:
+				with open(f"{self.filename}", "r", encoding=self.encoding) as f:
 					raw = f.readlines()
 				return raw
 			except FileNotFoundError:
@@ -48,7 +50,7 @@ class FileManager:
 	def set(self, text):
 		if self.level >= 3:
 			try:
-				with open(f"{self.filename}", "w") as f:
+				with open(f"{self.filename}", "w", encoding=self.encoding) as f:
 					f.write(text)
 					return 1
 			except FileNotFoundError:
@@ -61,9 +63,9 @@ class FileManager:
 	def add(self, text, sep=""):
 		if self.level >= 2:
 			try:
-				with open(f"{self.filename}", "r") as f:
+				with open(f"{self.filename}", "r", encoding=self.encoding) as f:
 					old = f.read()
-				with open(f"{self.filename}", "w") as f:
+				with open(f"{self.filename}", "w", encoding=self.encoding) as f:
 					f.write(old + sep + text)
 					return 1
 			except FileNotFoundError:
@@ -76,9 +78,9 @@ class FileManager:
 	def replace(self, _from, _to):
 		if self.level >= 3:
 			try:
-				with open(f"{self.filename}", "r") as f:
+				with open(f"{self.filename}", "r", encoding=self.encoding) as f:
 					data = f.read().replace(_from, _to)
-				with open(f"{self.filename}", "w") as f:
+				with open(f"{self.filename}", "w", encoding=self.encoding) as f:
 					f.write(data)
 			except FileNotFoundError:
 				print("Something went wrong...")
@@ -138,7 +140,7 @@ class FilesManager:
 	# Initalization func
 
 	def __init__(self, level):
-		if level > 0 and level < 6:
+		if 0 < level < 6:
 			self.level = int(level)
 		else:
 			print("Invalid access level! Allowed only 1-6 access levels")
@@ -147,14 +149,14 @@ class FilesManager:
 
 	# Read line in text file
 
-	def readline(self, dst, use_wd=False):
+	def readline(self, dst, use_wd=False, encoding: str = "UTF-8"):
 		if self.level >= 1:
 			try:
 				if use_wd == True and "/" in self._dir:
-					with open(f"{self._dir}{dst}", "r") as f:
+					with open(f"{self._dir}{dst}", "r", encoding=encoding) as f:
 						raw = f.readline()
 				else:
-					with open(f"{dst}", "r") as f:
+					with open(f"{dst}", "r", encoding=encoding) as f:
 						raw = f.readline()
 				return raw
 			except FileNotFoundError:
@@ -164,14 +166,14 @@ class FilesManager:
 
 	# Read lines in text file (as array)
 
-	def readlines(self, dst, use_wd=False):
+	def readlines(self, dst, use_wd=False, encoding: str = "UTF-8"):
 		if self.level >= 1:
 			try:
 				if use_wd == True and "/" in self._dir:
-					with open(f"{self._dir}{dst}", "r") as f:
+					with open(f"{self._dir}{dst}", "r", encoding=encoding) as f:
 						raw = f.readlines()
 				else:
-					with open(f"{dst}", "r") as f:
+					with open(f"{dst}", "r", encoding=encoding) as f:
 						raw = f.readlines()
 				return raw
 			except FileNotFoundError:
@@ -181,15 +183,15 @@ class FilesManager:
 
 	# Set content in text file
 
-	def set(self, dst, text, use_wd=False):
+	def set(self, dst, text, use_wd=False, encoding: str = "UTF-8"):
 		if self.level >= 3:
 			try:
 				if use_wd == True and "/" in self._dir:
-					with open(f"{self._dir}{dst}", "w") as f:
+					with open(f"{self._dir}{dst}", "w", encoding=encoding) as f:
 						f.write(text)
 						return 1
 				else:
-					with open(f"{dst}", "w") as f:
+					with open(f"{dst}", "w", encoding=encoding) as f:
 						f.write(text)
 						return 1
 			except FileNotFoundError:
@@ -199,19 +201,19 @@ class FilesManager:
 
 	# Add content in text file with separator(default separator is empty)
 
-	def add(self, dst, text, sep="", use_wd=False):
+	def add(self, dst, text, sep="", use_wd=False, encoding: str = "UTF-8"):
 		if self.level >= 2:
 			try:
 				if use_wd == True and "/" in self._dir:
-					with open(f"{self._dir}{dst}", "r") as f:
+					with open(f"{self._dir}{dst}", "r", encoding=encoding) as f:
 						old = f.read()
-					with open(f"{self._dir}{dst}", "w") as f:
+					with open(f"{self._dir}{dst}", "w", encoding=encoding) as f:
 						f.write(old + sep + text)
 						return 1
 				else:
-					with open(f"{dst}", "r") as f:
+					with open(f"{dst}", "r", encoding=encoding) as f:
 						old = f.read()
-					with open(f"{dst}", "w") as f:
+					with open(f"{dst}", "w", encoding=encoding) as f:
 						f.write(old + sep + text)
 						return 1
 			except FileNotFoundError:
@@ -221,18 +223,18 @@ class FilesManager:
 
 	# Replace certain content in text file
 
-	def replace(self, dst, _from, _to, use_wd=False):
+	def replace(self, dst, _from, _to, use_wd=False, encoding: str = "UTF-8"):
 		if self.level >= 3:
 			try:
 				if use_wd == True and "/" in self._dir:
-					with open(f"{dst}", "r") as f:
+					with open(f"{dst}", "r", encoding=encoding) as f:
 						data = f.read().replace(_from, _to)
-					with open(f"{dst}", "w") as f:
+					with open(f"{dst}", "w", encoding=encoding) as f:
 						f.write(data)
 				else:
-					with open(f"{dst}", "r") as f:
+					with open(f"{dst}", "r", encoding=encoding) as f:
 						data = f.read().replace(_from, _to)
-					with open(f"{dst}", "w") as f:
+					with open(f"{dst}", "w", encoding=encoding) as f:
 						f.write(data)
 			except FileNotFoundError:
 				print("Something went wrong...")

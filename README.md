@@ -36,10 +36,11 @@ Also you can create, copy, move, rename and remove any files.
 > ```python
 > import sfmanager
 > 
-> f = sfmanager.FileManager(filename="data.txt", level=5)
+> f = sfmanager.FileManager(filename="data.txt", level=5, encoding="UTF-16")
 > ```
 > `filename` - filename or path to file \
-> `level` - access level, where `1` - read only, `2` - add content(for text files only), `3` - replace and set content(for text files only), `4` - rename, copy, move file, `5` - remove file
+> `level` - access level, where `1` - read only, `2` - add content(for text files only), `3` - replace and set content(for text files only), `4` - rename, copy, move file, `5` - remove file \
+
 ##
 > [!NOTE]
 > Work with text files
