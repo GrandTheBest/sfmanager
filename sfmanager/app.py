@@ -28,9 +28,9 @@ class FileManager:
 					raw = f.readline()
 				return raw
 			except FileNotFoundError:
-				print("Something went wrong...")
+				return "Something went wrong..."
 		else:
-			print(f"Low access level! {self.level}, but need 1")
+			return f"Low access level! {self.level}, but need 1"
 
 	# Read lines in text file (as array)
 
@@ -41,9 +41,9 @@ class FileManager:
 					raw = f.readlines()
 				return raw
 			except FileNotFoundError:
-				print("Something went wrong...")
+				return "Something went wrong..."
 		else:
-			print(f"Low access level! {self.level}, but need 1")
+			return f"Low access level! {self.level}, but need 1"
 
 	# Set content in text file
 
@@ -54,9 +54,9 @@ class FileManager:
 					f.write(text)
 					return 1
 			except FileNotFoundError:
-				print("Something went wrong...")
+				return "Something went wrong..."
 		else:
-			print(f"Low access level! {self.level}, but need 3")
+			return f"Low access level! {self.level}, but need 3"
 
 	# Add content in text file with separator(default separator is empty)
 
@@ -69,9 +69,9 @@ class FileManager:
 					f.write(old + sep + text)
 					return 1
 			except FileNotFoundError:
-				print("Something went wrong...")
+				return "Something went wrong..."
 		else:
-			print(f"Low access level! {self.level}, but need 2")
+			return f"Low access level! {self.level}, but need 2"
 
 	# Replace certain content in text file
 
@@ -83,9 +83,9 @@ class FileManager:
 				with open(f"{self.filename}", "w", encoding=self.encoding) as f:
 					f.write(data)
 			except FileNotFoundError:
-				print("Something went wrong...")
+				return "Something went wrong..."
 		else:
-			print(f"Low access level! {self.level}, but need 3")
+			return f"Low access level! {self.level}, but need 3"
 
 	# Funcs for general work with files
 
@@ -96,9 +96,9 @@ class FileManager:
 			try:
 				os.rename(f"{self.filename}", name)
 			except FileNotFoundError:
-				print("Something went wrong...")
+				return "Something went wrong..."
 		else:
-			print(f"Low access level! {self.level}, but need 4")
+			return f"Low access level! {self.level}, but need 4"
 
 	# Delete file
 
@@ -107,9 +107,9 @@ class FileManager:
 			try:
 				os.remove(f"{self.filename}")
 			except FileNotFoundError:
-				print("Something went wrong...")
+				return "Something went wrong..."
 		else:
-			print(f"Low access level! {self.level}, but need 5")
+			return f"Low access level! {self.level}, but need 5"
 
 	# Copy file
 
@@ -118,9 +118,9 @@ class FileManager:
 			try:
 				shutil.copy2(f"{self.filename}", f"{dst}")
 			except FileNotFoundError:
-				print("Something went wrong...")
+				return "Something went wrong..."
 		else:
-			print(f"Low access level! {self.level}, but need 4")
+			return f"Low access level! {self.level}, but need 4"
 
 	# Move file
 
@@ -129,9 +129,9 @@ class FileManager:
 			try:
 				shutil.move(f"{self.filename}", f"{dst}")
 			except FileNotFoundError:
-				print("Something went wrong...")
+				return "Something went wrong..."
 		else:
-			print(f"Low access level! {self.level}, but need 4")
+			return f"Low access level! {self.level}, but need 4"
 
 class FilesManager:
 	level = None
@@ -160,9 +160,9 @@ class FilesManager:
 						raw = f.readline()
 				return raw
 			except FileNotFoundError:
-				print("Something went wrong...")
+				return "Something went wrong..."
 		else:
-			print(f"Low access level! {self.level}, but need 1")
+			return f"Low access level! {self.level}, but need 1"
 
 	# Read lines in text file (as array)
 
@@ -177,9 +177,9 @@ class FilesManager:
 						raw = f.readlines()
 				return raw
 			except FileNotFoundError:
-				print("Something went wrong...")
+				return "Something went wrong..."
 		else:
-			print(f"Low access level! {self.level}, but need 1")
+			return f"Low access level! {self.level}, but need 1"
 
 	# Set content in text file
 
@@ -195,9 +195,9 @@ class FilesManager:
 						f.write(text)
 						return 1
 			except FileNotFoundError:
-				print("Something went wrong...")
+				return "Something went wrong..."
 		else:
-			print(f"Low access level! {self.level}, but need 3")
+			return f"Low access level! {self.level}, but need 3"
 
 	# Add content in text file with separator(default separator is empty)
 
@@ -217,9 +217,9 @@ class FilesManager:
 						f.write(old + sep + text)
 						return 1
 			except FileNotFoundError:
-				print("Something went wrong...")
+				return "Something went wrong..."
 		else:
-			print(f"Low access level! {self.level}, but need 2")
+			return f"Low access level! {self.level}, but need 2"
 
 	# Replace certain content in text file
 
@@ -237,9 +237,9 @@ class FilesManager:
 					with open(f"{dst}", "w", encoding=encoding) as f:
 						f.write(data)
 			except FileNotFoundError:
-				print("Something went wrong...")
+				return "Something went wrong..."
 		else:
-			print(f"Low access level! {self.level}, but need 3")
+			return f"Low access level! {self.level}, but need 3"
 
 	# Funcs for general work with files
 
@@ -253,7 +253,7 @@ class FilesManager:
 				f = open(f"{dst}", "w")
 			f.close()
 		else:
-			print(f"Low access level! {self.level}, but need 2")
+			return f"Low access level! {self.level}, but need 2"
 
 	# Rename file(from self.filename to name)
 
@@ -265,9 +265,9 @@ class FilesManager:
 				else:
 					os.rename(f"{dst}", name)
 			except FileNotFoundError:
-				print("Something went wrong...")
+				return "Something went wrong..."
 		else:
-			print(f"Low access level! {self.level}, but need 4")
+			return f"Low access level! {self.level}, but need 4"
 
 	# Delete file
 
@@ -279,9 +279,9 @@ class FilesManager:
 				else:
 					os.remove(f"{dst}")
 			except FileNotFoundError:
-				print("Something went wrong...")
+				return "Something went wrong..."
 		else:
-			print(f"Low access level! {self.level}, but need 5")
+			return f"Low access level! {self.level}, but need 5"
 
 	# Copy file
 
@@ -293,9 +293,9 @@ class FilesManager:
 				else:
 					shutil.copy2(f"{dst}", f"{new_dst}")
 			except FileNotFoundError:
-				print("Something went wrong...")
+				return "Something went wrong..."
 		else:
-			print(f"Low access level! {self.level}, but need 4")
+			return f"Low access level! {self.level}, but need 4"
 
 	# Move file
 
@@ -307,9 +307,9 @@ class FilesManager:
 				else:
 					shutil.move(f"{dst}", f"{new_dst}")
 			except FileNotFoundError:
-				print("Something went wrong...")
+				return "Something went wrong..."
 		else:
-			print(f"Low access level! {self.level}, but need 4")
+			return f"Low access level! {self.level}, but need 4"
 
 	# Set work directory (cd)
 
@@ -317,4 +317,4 @@ class FilesManager:
 		if "/" in _dir:
 			self._dir = _dir
 		else:
-			print("Error! It's not directory!")
+			return "Error! It's not directory!"
